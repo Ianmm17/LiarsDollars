@@ -5,3 +5,39 @@
     color: white;
     font-size: 30px;
 }
+
+.playerClass {
+    padding: 25px;
+    font-size: 30px;
+}
+
+.playerName {
+    border-width: thick;
+    border-color: black;
+    text-align: center;
+    color: grey;
+}
+
+.playerTotal {
+    border-width: thick;
+    color: green;
+    text-align: center;
+    border-color: gold;
+    width: 55px;
+}
+
+.winner {
+    border-width: thick;
+    width: 55px;
+    margin-left: 15px;
+    border-color: green;
+}
+
+.loser {
+    border-width: thick;
+    width: 55px;
+    margin-left: 20px;
+    border-color: red;
+}
+
+.addPlayer

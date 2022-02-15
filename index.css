@@ -9,13 +9,16 @@
 .playerClass {
     padding: 25px;
     font-size: 30px;
+
 }
 
 .playerName {
+    font-weight: bolder;
     border-width: thick;
     border-color: black;
     text-align: center;
-    color: grey;
+    color: black;
+
 }
 
 .playerTotal {
@@ -40,4 +43,22 @@
     border-color: red;
 }
 
-.addPlayer
+.addOrRemovePlayer {
+    margin: auto;
+    width: 18%;
+    padding: 10px;
+}
+
+.addPlayer {
+    background: #00fd00;
+    border-radius: 5px;
+    font-weight: bolder;
+    font-size: 15px;
+}
+
+.removePlayer {
+    background: #ee4242;
+    border-radius: 5px;
+    font-weight: bolder;
+    font-size: 15px;
+}

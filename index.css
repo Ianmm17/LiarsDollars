@@ -6,13 +6,13 @@
     font-size: 30px;
 }
 
-.playersClasses {
+.player-classes {
     padding: 25px;
     font-size: 30px;
 
 }
 
-.playerName {
+.player-name {
     font-weight: bolder;
     border-width: thick;
     border-color: black;
@@ -21,7 +21,7 @@
 
 }
 
-.playerTotal {
+.player-total {
     border-width: thick;
     color: green;
     text-align: center;
@@ -43,22 +43,26 @@
     border-color: red;
 }
 
-.addOrRemovePlayer {
+.add-or-remove-players {
     margin: auto;
     width: 18%;
     padding: 10px;
 }
 
-.addPlayer {
+.add-player {
     background: #00fd00;
     border-radius: 5px;
     font-weight: bolder;
     font-size: 15px;
 }
 
-.removePlayer {
+.remove-player {
     background: #ee4242;
     border-radius: 5px;
     font-weight: bolder;
     font-size: 15px;
+}
+
+.player-card {
+
 }

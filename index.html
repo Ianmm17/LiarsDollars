@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<script src="index.js"></script>
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="index.css">
@@ -10,8 +11,12 @@
 </div><br>
 
 <body>
+<div class="addOrRemovePlayer">
+    <button class="addPlayer" type="button" name="addPlayer" onclick="addPlayer()">Add Player</button>
+    <button class="removePlayer" type="button" name="removePlayer">Remove Player</button>
+</div>
 <div class="playerClass">
-    <input class="playerName" type='text' name='playerName' maxlength=12 placeholder="Enter Player Name" />
+    <input class="playerName" type='text' name='playerName' maxlength=12 placeholder="Enter Player Name" color="grey"/>
     <input class="playerTotal" type='number' name='playerTotal' maxlength=12 value="$"/><br>
     <button class="winner" type="button" name="winner">W</button>
     <button class="loser" type="button" name="loser">L</button>

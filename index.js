@@ -4,11 +4,8 @@ let numberOfPlayers = 1;
 
 function addPlayer() {
     let playerCard = ""
-    if (document.getElementById("player-card").valueOf() === "player-card") {
-        numberOfPlayers = 2
-    } else {
-        numberOfPlayers += 1
-    }
+    numberOfPlayers += 1
+
     playerCard = `player-card${numberOfPlayers}`
     console.log("SORTA ADDED PLAYER")
     let elementPlayerClasses = document.getElementById("player-classes")

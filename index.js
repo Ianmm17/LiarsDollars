@@ -18,9 +18,3 @@ function addPlayer() {
     console.log(playerCard)
 }
 
-function removePlayer(playerCardNum) {
-    console.log("did it work?", playerCardNum)
-
-    document.getElementById(playerCardNum).remove()
-}
-

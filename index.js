@@ -21,10 +21,10 @@ function addPlayer() {
 }
 
 function resetGame() {
-    numberOfPlayers = 1
     //window.location.reload();
+    numberOfPlayers = 1
     document.getElementById("player-classes").remove()
-    document.getElementById("add-or-remove-players").insertAdjacentHTML("afterend",
+    document.getElementById("add-or-reset").insertAdjacentHTML("afterend",
         `<div class="player-classes" id="player-classes">
             <div class="player-card" id="player-card">
             <input id="player-name" class="player-name" type='text' name='player-name' maxlength=12 placeholder="Enter Player Name" color="grey"/>

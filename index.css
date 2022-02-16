@@ -43,14 +43,16 @@
     border-color: red;
 }
 
-.add-or-remove-players {
+.add-or-reset {
     margin: auto;
-    width: 18%;
-    padding: 10px;
+    align-items: center;
+    width: 35%;
+    padding: 15px;
 }
 
 .add-player {
     background: #00fd00;
+    margin-left: 25%;
     border-radius: 5px;
     font-weight: bolder;
     font-size: 15px;
@@ -67,3 +69,35 @@
 
 }
 
+@media only screen and (min-width: 768px){
+    .add-player {
+        margin-left: 25%;
+    }
+}
+
+/*@media only screen and (min-width: 480px){
+    .reset-game {
+        margin-top: 10px;
+    }
+
+    .header {
+        padding: 15px;
+    }
+
+    .winner {
+        margin-left: 15px;
+    }
+    .loser {
+        width: 55px;
+        margin-left: 5px;
+    }
+    .add-or-reset {
+        width: 50%;
+        padding: 15px;
+    }
+    .add-player {
+        margin-left: 55%;
+    }
+
+
+}

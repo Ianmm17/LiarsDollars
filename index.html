@@ -19,9 +19,24 @@
     <div class="player-card" id="player-card">
         <input id="player-name" class="player-name" type='text' name='player-name' maxlength=12 placeholder="Enter Player Name" color="grey"/>
         <input class="player-total" type='number' name='player-total' maxlength=12/>
-        <button class="winner" type="button" name="winner">W</button>
+        <button class="winner" type="button" name="winner" onclick="winner()">W</button>
         <button class="loser" type="button" name="loser">L</button>
     </div>
+</div>
+<div class="players-record" id="player-record">
+    <table id="overall-table">
+        <tr id="table-headers">
+            <th>Player</th>
+            <th>Win/Loss</th>
+            <th>Amount Won/Loss</th>
+        </tr>
+        <tr id="table-data">
+            <td>Alfreds Futterkiste</td>
+            <td>Maria Anders</td>
+            <td>Germany</td>
+            <td id="remove-record"><button class="remove-record" onclick="removeData()">X</button></td>
+        </tr>
+    </table>
 </div>
 </body>
 </html>

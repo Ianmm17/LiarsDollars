@@ -13,7 +13,7 @@ function addPlayer() {
         `<div class=${playerCard} id=${playerCard}>` +
                 `<input id="player-name" class="player-name" type='text' name='player-name' maxlength=12 placeholder="Enter Player Name" color=\"grey\"/>
                 <input class="player-total" type='number' name='player-total' maxlength=12/>
-                <button class="winner" type="button" name="winner">W</button>
+                <button class="winner" type="button" name="winner" onclick="winner()">W</button>
                 <button class="loser" type="button" name="loser">L</button>
         </div>`)
     //elementPlayerClasses.append(clone)
@@ -29,10 +29,42 @@ function resetGame() {
             <div class="player-card" id="player-card">
             <input id="player-name" class="player-name" type='text' name='player-name' maxlength=12 placeholder="Enter Player Name" color="grey"/>
             <input class="player-total" type='number' name='player-total' maxlength=12/>
-            <button class="winner" type="button" name="winner">W</button>
+            <button class="winner" type="button" name="winner" onclick="winner()">W</button>
             <button class="loser" type="button" name="loser">L</button>
             </div>
         </div>`
     )
+    document.getElementById("overall-table").remove()
+    document.getElementById("player-record").insertAdjacentHTML("beforeend",
+        `<table id="overall-table">
+            <tr id="table-headers">
+                <th>Company</th>
+                <th>Contact</th>
+                <th>Country</th>
+            </tr>
+            <tr id="table-data">
+                <td>Alfreds Futterkiste</td>
+                <td>Maria Anders</td>
+                <td>Germany</td>
+                <td id="remove-record"><button class="remove-record" onClick="removeData()">X</button>
+                </td>
+            </tr>
+        </table>`
+    )
+}
+
+function winner() {
+    document.getElementById("table-headers").insertAdjacentHTML("afterend",
+        `<tr id="table-data">
+            <td>Alfreds Futterkiste</td>
+            <td>Maria Anders</td>
+            <td>Germany</td>
+            <td id="remove-record"><button class="remove-record" onclick="removeData()">X</button></td>
+        </tr>`
+    )
+}
+
+function removeData() {
+    document.getElementById("table-data").remove()
 }
 

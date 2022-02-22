@@ -86,7 +86,8 @@
 
 
 
-    #remove-record {
+    #table-data {
+        text-align: center;
     }
 
     th {

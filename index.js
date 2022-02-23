@@ -1,6 +1,8 @@
 // Get the element
 let numberOfPlayers = 1;
 let playerName = "player-name"
+let playerTotal = "player-total"
+let playerArr = ['player-total']
 
 
 function addPlayer() {
@@ -8,17 +10,19 @@ function addPlayer() {
     numberOfPlayers += 1
     playerCard = `player-card${numberOfPlayers}`
     playerName = `player-name${numberOfPlayers}`
+    playerTotal = `player-total${numberOfPlayers}`
+    playerArr.push(playerTotal)
     console.log("SORTA ADDED PLAYER")
     let elementPlayerClasses = document.getElementById("player-classes")
     elementPlayerClasses.insertAdjacentHTML("beforeend",
         `<div class=player-card id=${playerCard}>` +
                 `<input id="${playerName}" class="player-name" type='text' name='player-name' maxlength=12 placeholder="Enter Player Name" color=\"grey\"/>
-                <input class="player-total" type='number' name='player-total' maxlength=12/>
-                <button class="winner" type="button" name="winner" onclick="winner(playerName)">W</button>
+                <input id="${playerTotal}" class="player-total" type='number' name='player-total' maxlength=12/>
+                <button class="winner" type="button" name="winner" onclick="winner(playerName, playerTotal)">W</button>
                 <button class="loser" type="button" name="loser">L</button>
         </div>`)
     //elementPlayerClasses.append(clone)
-    console.log(playerCard, playerName)
+    console.log(playerArr)
 }
 
 function resetGame() {
@@ -54,22 +58,25 @@ function resetGame() {
     )
 }
 
-function winner(playerName) {
+function winner(playerName, playerBalance) {
     let name = document.getElementById(`${playerName}`).value
-    if (name === "") {
-        alert("Please enter a name")
+    let balance = document.getElementById(playerBalance).value
+
+    if (name === "" || balance === "") {
+        alert("Please enter a name and player balance")
     } else {
+        let newPlayerBalance = Number(balance) + (numberOfPlayers -1)
+        document.getElementById(playerBalance).value = newPlayerBalance
         document.getElementById("table-headers").insertAdjacentHTML("afterend",
             `<tr id="table-data">
             <td>${name}</td>
-            <td>Maria Anders</td>
+            <td>+$${numberOfPlayers - 1}.00</td>
             <td>Germany</td>
             <td id="remove-record"><button class="remove-record" onclick="removeData()">X</button></td>
         </tr>`
         )
-    }
 
-    console.log(name)
+    }
 
 }
 

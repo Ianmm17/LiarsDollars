@@ -41,7 +41,7 @@ function resetGame() {
             <tr id="table-headers">
                 <th>Player</th>
                 <th>Amount Won/Lost</th>
-                <th>Win/Lost</th>
+                <th>Won/Lost</th>
             </tr>
             <tr id="table-data">
                 <td>Alfreds Futterkiste</td>
@@ -67,7 +67,6 @@ function winner(playerName, playerBalanceNumBoxName) {
         addTableRow(name, numberOfPlayers -1, true)
         for (let i = 0; i < playerArr.length; i++) {
             if (playerBalanceNumBoxName != playerArr[i]) {
-               // console.log(playerBalanceNumBoxName, playerArr[i])
                 let losingPlayer = document.getElementById(`${playerArr[i]}`).value
                 let newLosingPlayerBalance = losingPlayer -1
                 document.getElementById(`${playerArr[i]}`).value = newLosingPlayerBalance
@@ -83,12 +82,19 @@ function addTableRow(name, moneyEarnedOrLoss, winOrLoss) {
             `<tr id="table-data">
             <td>${name}</td>
             <td>+$${moneyEarnedOrLoss}.00</td>
-            <td>Germany</td>
+            <td>Won</td>
             <td id="remove-record"><button class="remove-record" onclick="removeData()">X</button></td>
         </tr>`
         )
     } else {
-
+        document.getElementById("table-headers").insertAdjacentHTML("afterend",
+            `<tr id="table-data">
+            <td>${name}</td>
+            <td>-$${moneyEarnedOrLoss}.00</td>
+            <td>Loss</td>
+            <td id="remove-record"><button class="remove-record" onclick="removeData()">X</button></td>
+        </tr>`
+        )
     }
 
 }

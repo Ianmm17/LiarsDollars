@@ -7,19 +7,17 @@ class Player {
         this.currentBalance = currentBalance
     }
 }
-let numberOfPlayers = 1;
-let playerName = "player-name"
-let playerTotal = "player-total"
-let playerArr = ['player-total']
+
 //document.querySelectorAll('.player-class .player-name') maybe use?
+let numberOfPlayers = 1;
+let playerArr = ['player-total']
 
 
 function addPlayer() {
-    let playerCard = ""
     numberOfPlayers += 1
-    playerCard = `player-card${numberOfPlayers}`
-    playerName = `player-name${numberOfPlayers}`
-    playerTotal = `player-total${numberOfPlayers}`
+    let playerCard = `player-card${numberOfPlayers}`
+    let playerName = `player-name${numberOfPlayers}`
+    let playerTotal = `player-total${numberOfPlayers}`
     playerArr.push(playerTotal)
     addPlayerCard(playerName, playerTotal, playerCard)
 }
@@ -57,6 +55,7 @@ function resetGame() {
 }
 
 function winner(playerName, playerBalanceNumBoxName) {
+    console.log(playerName, playerBalanceNumBoxName)
     let name = document.getElementById(`${playerName}`).value
     let balance = document.getElementById(playerBalanceNumBoxName).value
 
@@ -65,10 +64,10 @@ function winner(playerName, playerBalanceNumBoxName) {
     } else {
         let newPlayerBalance = Number(balance) + (numberOfPlayers -1)
         document.getElementById(playerBalanceNumBoxName).value = newPlayerBalance
-        addTableRow(name, numberOfPlayers -1)
+        addTableRow(name, numberOfPlayers -1, true)
         for (let i = 0; i < playerArr.length; i++) {
             if (playerBalanceNumBoxName != playerArr[i]) {
-
+               // console.log(playerBalanceNumBoxName, playerArr[i])
                 let losingPlayer = document.getElementById(`${playerArr[i]}`).value
                 let newLosingPlayerBalance = losingPlayer -1
                 document.getElementById(`${playerArr[i]}`).value = newLosingPlayerBalance
@@ -78,15 +77,20 @@ function winner(playerName, playerBalanceNumBoxName) {
 
 }
 
-function addTableRow(name, moneyEarned) {
-    document.getElementById("table-headers").insertAdjacentHTML("afterend",
+function addTableRow(name, moneyEarnedOrLoss, winOrLoss) {
+    if (winOrLoss) {
+        document.getElementById("table-headers").insertAdjacentHTML("afterend",
             `<tr id="table-data">
             <td>${name}</td>
-            <td>+$${moneyEarned}.00</td>
+            <td>+$${moneyEarnedOrLoss}.00</td>
             <td>Germany</td>
             <td id="remove-record"><button class="remove-record" onclick="removeData()">X</button></td>
         </tr>`
         )
+    } else {
+
+    }
+
 }
 
 function addPlayerCard(playerName, playerTotal, playerCard) {
@@ -95,7 +99,7 @@ function addPlayerCard(playerName, playerTotal, playerCard) {
         `<div class=player-card id=${playerCard}>` +
         `<input id="${playerName}" class="player-name" type='text' name='player-name' maxlength=12 placeholder="Enter Player Name" color=\"grey\"/>
                 <input id="${playerTotal}" class="player-total" type='number' name='player-total' maxlength=12/>
-                <button class="winner" type="button" name="winner" onclick="winner(playerName, playerTotal)">W</button>
+                <button class="winner" type="button" name="winner" onclick="winner('${playerName}', '${playerTotal}')">W</button>
                 <button class="loser" type="button" name="loser">L</button>
         </div>`)
 }

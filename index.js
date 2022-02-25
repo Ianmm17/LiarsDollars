@@ -1,4 +1,12 @@
 // Get the element
+class Player {
+    constructor(name, startingBalance, currentBalance) {
+        this.name = name
+        this.total = total
+        this.startingBalance = startingBalance
+        this.currentBalance = currentBalance
+    }
+}
 let numberOfPlayers = 1;
 let playerName = "player-name"
 let playerTotal = "player-total"
@@ -13,21 +21,10 @@ function addPlayer() {
     playerName = `player-name${numberOfPlayers}`
     playerTotal = `player-total${numberOfPlayers}`
     playerArr.push(playerTotal)
-    console.log("SORTA ADDED PLAYER")
-    let elementPlayerClasses = document.getElementById("player-classes")
-    elementPlayerClasses.insertAdjacentHTML("beforeend",
-        `<div class=player-card id=${playerCard}>` +
-                `<input id="${playerName}" class="player-name" type='text' name='player-name' maxlength=12 placeholder="Enter Player Name" color=\"grey\"/>
-                <input id="${playerTotal}" class="player-total" type='number' name='player-total' maxlength=12/>
-                <button class="winner" type="button" name="winner" onclick="winner(playerName, playerTotal)">W</button>
-                <button class="loser" type="button" name="loser">L</button>
-        </div>`)
-    //elementPlayerClasses.append(clone)
-    console.log(playerArr)
+    addPlayerCard(playerName, playerTotal, playerCard)
 }
 
 function resetGame() {
-    //window.location.reload();
     numberOfPlayers = 1
     document.getElementById("player-classes").remove()
     document.getElementById("add-or-reset").insertAdjacentHTML("afterend",
@@ -59,16 +56,24 @@ function resetGame() {
     )
 }
 
-function winner(playerName, playerBalance) {
+function winner(playerName, playerBalanceNumBoxName) {
     let name = document.getElementById(`${playerName}`).value
-    let balance = document.getElementById(playerBalance).value
+    let balance = document.getElementById(playerBalanceNumBoxName).value
 
     if (name === "" || balance === "") {
         alert("Please enter a name and player balance")
     } else {
         let newPlayerBalance = Number(balance) + (numberOfPlayers -1)
-        document.getElementById(playerBalance).value = newPlayerBalance
+        document.getElementById(playerBalanceNumBoxName).value = newPlayerBalance
         addTableRow(name, numberOfPlayers -1)
+        for (let i = 0; i < playerArr.length; i++) {
+            if (playerBalanceNumBoxName != playerArr[i]) {
+
+                let losingPlayer = document.getElementById(`${playerArr[i]}`).value
+                let newLosingPlayerBalance = losingPlayer -1
+                document.getElementById(`${playerArr[i]}`).value = newLosingPlayerBalance
+            }
+        }
     }
 
 }
@@ -82,6 +87,17 @@ function addTableRow(name, moneyEarned) {
             <td id="remove-record"><button class="remove-record" onclick="removeData()">X</button></td>
         </tr>`
         )
+}
+
+function addPlayerCard(playerName, playerTotal, playerCard) {
+    let elementPlayerClasses = document.getElementById("player-classes")
+    elementPlayerClasses.insertAdjacentHTML("beforeend",
+        `<div class=player-card id=${playerCard}>` +
+        `<input id="${playerName}" class="player-name" type='text' name='player-name' maxlength=12 placeholder="Enter Player Name" color=\"grey\"/>
+                <input id="${playerTotal}" class="player-total" type='number' name='player-total' maxlength=12/>
+                <button class="winner" type="button" name="winner" onclick="winner(playerName, playerTotal)">W</button>
+                <button class="loser" type="button" name="loser">L</button>
+        </div>`)
 }
 
 function removeData() {

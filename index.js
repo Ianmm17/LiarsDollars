@@ -55,7 +55,6 @@ function resetGame() {
 }
 
 function winner(playerName, playerBalanceNumBoxName) {
-    console.log(playerName, playerBalanceNumBoxName)
     let name = document.getElementById(`${playerName}`).value
     let balance = document.getElementById(playerBalanceNumBoxName).value
 
@@ -74,6 +73,26 @@ function winner(playerName, playerBalanceNumBoxName) {
         }
     }
 
+}
+
+function loser(playerName, playerBalanceNumBoxName) {
+    let name = document.getElementById(playerName).value
+    let balance = document.getElementById(playerBalanceNumBoxName).value
+
+    if (name === "" || balance === "") {
+        alert("Please enter a name and player balance")
+    } else {
+        let newPlayerBalance = Number(balance) - (numberOfPlayers - 1)
+        document.getElementById(playerBalanceNumBoxName).value = newPlayerBalance
+        addTableRow(name, numberOfPlayers -1, false)
+        for (let i = 0; i < playerArr.length; i++) {
+            if (playerBalanceNumBoxName != playerArr[i]) {
+                let winingPlayer = document.getElementById(`${playerArr[i]}`).value
+                let newWiningPlayerBalance = winingPlayer + 1
+                document.getElementById(`${playerArr[i]}`).value = newWiningPlayerBalance
+            }
+        }
+    }
 }
 
 function addTableRow(name, moneyEarnedOrLoss, winOrLoss) {
@@ -106,7 +125,7 @@ function addPlayerCard(playerName, playerTotal, playerCard) {
         `<input id="${playerName}" class="player-name" type='text' name='player-name' maxlength=12 placeholder="Enter Player Name" color=\"grey\"/>
                 <input id="${playerTotal}" class="player-total" type='number' name='player-total' maxlength=12/>
                 <button class="winner" type="button" name="winner" onclick="winner('${playerName}', '${playerTotal}')">W</button>
-                <button class="loser" type="button" name="loser">L</button>
+                <button class="loser" type="button" name="loser" onclick="loser('${playerName}', '${playerTotal}')">L</button>
         </div>`)
 }
 

@@ -23,35 +23,10 @@ function addPlayer() {
 }
 
 function resetGame() {
-    numberOfPlayers = 1
-    document.getElementById("player-classes").remove()
-    document.getElementById("add-or-reset").insertAdjacentHTML("afterend",
-        `<div class="player-classes" id="player-classes">
-            <div class="player-card" id="player-card">
-                <input id="player-name" class="player-name" type='text' name='player-name' maxlength=12 placeholder="Enter Player Name" color="grey"/>
-                <input id="player-total" class="player-total" type='number' name='player-total' maxlength=12/>
-                <button class="winner" type="button" name="winner" onclick="winner('player-name', 'player-total')">W</button>
-                <button class="loser" type="button" name="loser">L</button>
-            </div>
-        </div>`
-    )
-    document.getElementById("overall-table").remove()
-    document.getElementById("player-record").insertAdjacentHTML("beforeend",
-        `<table id="overall-table">
-            <tr id="table-headers">
-                <th>Player</th>
-                <th>Amount Won/Lost</th>
-                <th>Won/Lost</th>
-            </tr>
-            <tr id="table-data">
-                <td>Alfreds Futterkiste</td>
-                <td>Maria Anders</td>
-                <td>Germany</td>
-                <td id="remove-record"><button class="remove-record" onClick="removeData()">X</button>
-                </td>
-            </tr>
-        </table>`
-    )
+    let trueOrFalse = confirm('All data will be lost for game, are you sure you want to reset game?')
+    if (trueOrFalse) {
+        window.location.reload()
+    }
 }
 
 function winner(playerName, playerBalanceNumBoxName) {
@@ -81,9 +56,7 @@ function loser(playerName, playerBalanceNumBoxName) {
 
     if (name === "" || balance === "") {
         alert("Please enter a name and player balance")
-    }
-
-    if (playerArr.length < 2) {
+    } else if (playerArr.length < 2) {
         document.getElementsByClassName('loser').disable = true
     } else {
         document.getElementById(playerBalanceNumBoxName).value = Number(balance) - (numberOfPlayers - 1)

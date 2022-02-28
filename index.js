@@ -60,9 +60,7 @@ function winner(playerName, playerBalanceNumBoxName) {
 
     if (name === "" || balance === "") {
         alert("Please enter a name and player balance")
-    }
-
-    if (playerArr.length < 2) {
+    } else if (playerArr.length < 2) {
         document.getElementsByClassName('winner').disable = true
     } else {
         document.getElementById(playerBalanceNumBoxName).value = Number(balance) + (numberOfPlayers - 1)
@@ -92,7 +90,7 @@ function loser(playerName, playerBalanceNumBoxName) {
         addTableRow(name, numberOfPlayers -1, false)
         for (let i = 0; i < playerArr.length; i++) {
             if (playerBalanceNumBoxName !== playerArr[i]) {
-                let winingPlayer = document.getElementById(`${playerArr[i]}`).value
+                let winingPlayer = Number(document.getElementById(`${playerArr[i]}`).value)
                 document.getElementById(`${playerArr[i]}`).value = winingPlayer + 1
             }
         }

@@ -60,15 +60,17 @@ function winner(playerName, playerBalanceNumBoxName) {
 
     if (name === "" || balance === "") {
         alert("Please enter a name and player balance")
+    }
+
+    if (playerArr.length < 2) {
+        document.getElementsByClassName('winner').disable = true
     } else {
-        let newPlayerBalance = Number(balance) + (numberOfPlayers -1)
-        document.getElementById(playerBalanceNumBoxName).value = newPlayerBalance
+        document.getElementById(playerBalanceNumBoxName).value = Number(balance) + (numberOfPlayers - 1)
         addTableRow(name, numberOfPlayers -1, true)
         for (let i = 0; i < playerArr.length; i++) {
-            if (playerBalanceNumBoxName != playerArr[i]) {
+            if (playerBalanceNumBoxName !== playerArr[i]) {
                 let losingPlayer = document.getElementById(`${playerArr[i]}`).value
-                let newLosingPlayerBalance = losingPlayer -1
-                document.getElementById(`${playerArr[i]}`).value = newLosingPlayerBalance
+                document.getElementById(`${playerArr[i]}`).value = losingPlayer - 1
             }
         }
     }
@@ -81,15 +83,18 @@ function loser(playerName, playerBalanceNumBoxName) {
 
     if (name === "" || balance === "") {
         alert("Please enter a name and player balance")
+    }
+
+    if (playerArr.length < 2) {
+        document.getElementsByClassName('loser').disable = true
     } else {
         let newPlayerBalance = Number(balance) - (numberOfPlayers - 1)
         document.getElementById(playerBalanceNumBoxName).value = newPlayerBalance
         addTableRow(name, numberOfPlayers -1, false)
         for (let i = 0; i < playerArr.length; i++) {
-            if (playerBalanceNumBoxName != playerArr[i]) {
+            if (playerBalanceNumBoxName !== playerArr[i]) {
                 let winingPlayer = document.getElementById(`${playerArr[i]}`).value
-                let newWiningPlayerBalance = winingPlayer + 1
-                document.getElementById(`${playerArr[i]}`).value = newWiningPlayerBalance
+                document.getElementById(`${playerArr[i]}`).value = winingPlayer + 1
             }
         }
     }
@@ -110,7 +115,7 @@ function addTableRow(name, moneyEarnedOrLoss, winOrLoss) {
             `<tr id="table-data">
             <td>${name}</td>
             <td>-$${moneyEarnedOrLoss}.00</td>
-            <td>Loss</td>
+            <td>Lost</td>
             <td id="remove-record"><button class="remove-record" onclick="removeData()">X</button></td>
         </tr>`
         )

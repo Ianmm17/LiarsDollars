@@ -88,8 +88,7 @@ function loser(playerName, playerBalanceNumBoxName) {
     if (playerArr.length < 2) {
         document.getElementsByClassName('loser').disable = true
     } else {
-        let newPlayerBalance = Number(balance) - (numberOfPlayers - 1)
-        document.getElementById(playerBalanceNumBoxName).value = newPlayerBalance
+        document.getElementById(playerBalanceNumBoxName).value = Number(balance) - (numberOfPlayers - 1)
         addTableRow(name, numberOfPlayers -1, false)
         for (let i = 0; i < playerArr.length; i++) {
             if (playerBalanceNumBoxName !== playerArr[i]) {

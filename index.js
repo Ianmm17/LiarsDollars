@@ -39,7 +39,7 @@ function winner(playerName, playerBalanceNumBoxName) {
         document.getElementsByClassName('winner').disable = true
     } else {
         document.getElementById(playerBalanceNumBoxName).value = Number(balance) + (numberOfPlayers - 1)
-        addTableRow(name, numberOfPlayers -1, true)
+        addTableRow(name, playerBalanceNumBoxName,numberOfPlayers -1, true)
         for (let i = 0; i < playerArr.length; i++) {
             if (playerBalanceNumBoxName !== playerArr[i]) {
                 let losingPlayer = document.getElementById(`${playerArr[i]}`).value
@@ -70,14 +70,14 @@ function loser(playerName, playerBalanceNumBoxName) {
     }
 }
 
-function addTableRow(name, moneyEarnedOrLoss, winOrLoss) {
+function addTableRow(name, playerBalanceNumBoxName, moneyEarnedOrLoss, winOrLoss) {
     if (winOrLoss) {
         document.getElementById("table-headers").insertAdjacentHTML("afterend",
             `<tr id="table-data">
             <td>${name}</td>
             <td>+$${moneyEarnedOrLoss}.00</td>
             <td>Won</td>
-            <td id="remove-record"><button class="remove-record" onclick="removeData()">X</button></td>
+            <td id="remove-record"><button class="remove-record" onclick="removeData('${playerBalanceNumBoxName}', ${winOrLoss})">X</button></td>
         </tr>`
         )
     } else {
@@ -86,7 +86,7 @@ function addTableRow(name, moneyEarnedOrLoss, winOrLoss) {
             <td>${name}</td>
             <td>-$${moneyEarnedOrLoss}.00</td>
             <td>Lost</td>
-            <td id="remove-record"><button class="remove-record" onclick="removeData()">X</button></td>
+            <td id="remove-record"><button class="remove-record" onclick="removeData('${playerBalanceNumBoxName}', ${winOrLoss})">X</button></td>
         </tr>`
         )
     }
@@ -104,7 +104,31 @@ function addPlayerCard(playerName, playerTotal, playerCard) {
         </div>`)
 }
 
-function removeData() {
-    document.getElementById("table-data").remove()
+function removeData(playerBalanceNumBoxName, winOrLoss) {
+    //console.log(typeof playerNameNumBox, playerNameNumBox, document.getElementById(playerNameNumBox).value)
+    //console.log(playerName, playerName.value, typeof playerName, moneyEarnedOrLost, typeof moneyEarnedOrLost)
+    if (confirm('Data will be lost for round, are you sure you want to delete round?')) {
+        if (winOrLoss) {
+            let undoPlayerBalance = Number(document.getElementById(playerBalanceNumBoxName).value - (numberOfPlayers - 1))
+            document.getElementById(playerBalanceNumBoxName).value = undoPlayerBalance
+            for (let i = 0; i < playerArr.length; i++) {
+                if (playerBalanceNumBoxName !== playerArr[i]) {
+                    let needsRefundPlayer = Number(document.getElementById(`${playerArr[i]}`).value)
+                    document.getElementById(`${playerArr[i]}`).value = needsRefundPlayer + 1
+                }
+            }
+            document.getElementById("table-data").remove()
+        } else {
+            let undoPlayerBalance = Number(document.getElementById(playerBalanceNumBoxName).value + (numberOfPlayers - 1))
+            document.getElementById(playerBalanceNumBoxName).value = undoPlayerBalance
+            for (let i = 0; i < playerArr.length; i++) {
+                if (playerBalanceNumBoxName !== playerArr[i]) {
+                    let needsRefundPlayer = Number(document.getElementById(`${playerArr[i]}`).value)
+                    document.getElementById(`${playerArr[i]}`).value = needsRefundPlayer + 1
+                }
+            }
+        }
+
+    }
 }
 

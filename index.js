@@ -60,7 +60,7 @@ function loser(playerName, playerBalanceNumBoxName) {
         document.getElementsByClassName('loser').disable = true
     } else {
         document.getElementById(playerBalanceNumBoxName).value = Number(balance) - (numberOfPlayers - 1)
-        addTableRow(name, numberOfPlayers -1, false)
+        addTableRow(name, playerBalanceNumBoxName, numberOfPlayers -1, false)
         for (let i = 0; i < playerArr.length; i++) {
             if (playerBalanceNumBoxName !== playerArr[i]) {
                 let winingPlayer = Number(document.getElementById(`${playerArr[i]}`).value)
@@ -119,14 +119,15 @@ function removeData(playerBalanceNumBoxName, winOrLoss) {
             }
             document.getElementById("table-data").remove()
         } else {
-            let undoPlayerBalance = Number(document.getElementById(playerBalanceNumBoxName).value + (numberOfPlayers - 1))
+            let undoPlayerBalance = Number(document.getElementById(playerBalanceNumBoxName).value) + Number(numberOfPlayers - 1)
             document.getElementById(playerBalanceNumBoxName).value = undoPlayerBalance
             for (let i = 0; i < playerArr.length; i++) {
                 if (playerBalanceNumBoxName !== playerArr[i]) {
                     let needsRefundPlayer = Number(document.getElementById(`${playerArr[i]}`).value)
-                    document.getElementById(`${playerArr[i]}`).value = needsRefundPlayer + 1
+                    document.getElementById(`${playerArr[i]}`).value = needsRefundPlayer - 1
                 }
             }
+            document.getElementById("table-data").remove()
         }
 
     }

@@ -133,3 +133,7 @@ function removeData(playerBalanceNumBoxName, winOrLoss) {
     }
 }
 
+function submit() {
+
+}
+

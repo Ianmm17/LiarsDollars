@@ -88,10 +88,19 @@
         border: none;
     }
 
-
-
     #table-data {
         text-align: center;
+    }
+
+    .submit {
+        margin-right: 8%;
+        margin-top: 3%;
+        float: right;
+        background: #1abc9c;
+        color: white;
+        text-align: center;
+        font-size: 25px;
+        border-radius: 15px;
     }
 
     th {

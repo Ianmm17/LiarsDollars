@@ -134,6 +134,41 @@ function removeData(playerBalanceNumBoxName, winOrLoss) {
 }
 
 function submit() {
+    let headers = ['Player', 'Amount Won/Lost', 'Won/Lost']
+    let cell = []
+    const table = document.getElementById('overall-table');
+    for (let i = 1; i < table.rows.length; i++) {
+        for (let j = 0; j < table.rows[i].cells.length; j++) {
+            if (table.rows[i].cells[j].innerText === 'X') continue
+            let cellData = table.rows[i].cells[j].innerText
+            cell.push(cellData)
 
+        }
+    }
+    download_csv_file(cell)
 }
 
+//create a user-defined function to download CSV file
+function download_csv_file(cellArr) {
+
+    //define the heading for each row of the data
+    let csvHeaders = ['Player', 'Amount Won/Lost', 'Won/Lost']
+
+    //merge the data with CSV
+    // for (let i = 0; i < cellArr.length; i++ ) {
+    //     csvHeaders += row.join(',');
+    //     csvHeaders += "\n";
+    // };
+
+    //display the created CSV data on the web browser
+    document.write(csvHeaders);
+
+
+    let hiddenElement = document.createElement('a');
+    hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csvHeaders);
+    hiddenElement.target = '_blank';
+
+    //provide the name for the CSV file to be downloaded
+    hiddenElement.download = 'Liars Dollars' + new Date() + '.csv';
+    hiddenElement.click();
+}

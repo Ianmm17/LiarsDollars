@@ -3,18 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="index.css">
+    <script src="index.js"></script>
 </head>
+
+<body>
 <title>Liars Dollars</title>
 <div class="header">
     <h1>Liars Dollars</h1>
 </div><br>
-
-<body>
-<div class="playerClass">
-    <input class="playerName" type='text' name='playerName' maxlength=12 placeholder="Enter Player Name" />
-    <input class="playerTotal" type='number' name='playerTotal' maxlength=12 value="$"/><br>
-    <button class="winner" type="button" name="winner">W</button>
-    <button class="loser" type="button" name="loser">L</button>
+<div class="add-or-reset" id="add-or-reset">
+    <button class="add-player" type="button" name="add-player" onclick="addPlayer()">Add Player</button>
+    <button class="reset-game" type="reset" name="reset-game" onclick="return resetGame()">Reset Game</button>
+</div>
+<div class="player-classes" id="player-classes">
+    <div class="player-card" id="player-card">
+        <input id="player-name" class="player-name" type='text' name='player-name' maxlength=12 placeholder="Enter Player Name" color="grey"/>
+        <input id="player-total" class="player-total" type='number' name='player-total' maxlength=12/>
+        <button class="winner" type="button" name="winner" onclick="winner('player-name', 'player-total')">W</button>
+        <button class="loser" type="button" name="loser" onclick="loser('player-name', 'player-total')">L</button>
+    </div>
+</div>
+<div class="players-record" id="player-record">
+    <table id="overall-table">
+        <tr id="table-headers">
+            <th>Player</th>
+            <th>Amount Won/Lost</th>
+            <th>Won/Lost</th>
+        </tr>
+    </table>
+    <button class="submit" type="submit" onclick="submit()">Submit</button>
 </div>
 </body>
 </html>

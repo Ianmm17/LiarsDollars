@@ -1,43 +1,122 @@
-.header {
-    padding: 60px;
-    text-align: center;
-    background: #1abc9c;
-    color: white;
-    font-size: 30px;
+
+@media only screen and (min-width: 480px) {
+    .header {
+        padding: 60px;
+        text-align: center;
+        background: #1abc9c;
+        color: white;
+        font-size: 30px;
+    }
+
+    .player-classes {
+        margin: auto;
+        width: 35%;
+        padding: 25px;
+        font-size: 30px;
+
+    }
+
+    .player-name {
+        font-weight: bolder;
+        border-width: thick;
+        border-color: black;
+        text-align: center;
+        color: black;
+
+    }
+
+    .player-total {
+        border-width: thick;
+        color: green;
+        text-align: center;
+        border-color: gold;
+        width: 55px;
+    }
+
+    .winner {
+        border-width: thick;
+        width: 55px;
+        margin-left: 15px;
+        border-color: green;
+    }
+
+    .loser {
+        border-width: thick;
+        width: 55px;
+        margin-left: 20px;
+        border-color: red;
+    }
+
+    .add-or-reset {
+        width: 35%;
+        padding: 15px;
+        margin: auto;
+    }
+
+    .add-player {
+        background: #00fd00;
+        margin-left: 25%;
+        border-radius: 5px;
+        font-weight: bolder;
+        font-size: 15px;
+    }
+
+    .reset-game {
+        background: #ee4242;
+        border-radius: 5px;
+        font-weight: bolder;
+        font-size: 15px;
+    }
+
+    .players-record {
+        padding: 75px;
+        width: 55%;
+        margin: auto;
+        font-size: 35px;
+    }
+
+    .remove-record {
+        background: red;
+        border-radius: 15px;
+    }
+
+    th, td {
+        border:  0.20rem solid black;
+    }
+
+    #remove-record {
+        border: none;
+    }
+
+    #table-data {
+        text-align: center;
+    }
+
+    .submit {
+        margin-right: 8%;
+        margin-top: 3%;
+        float: right;
+        background: #1abc9c;
+        color: white;
+        text-align: center;
+        font-size: 25px;
+        border-radius: 15px;
+    }
+
+    th {
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+
+
+
+
 }
 
-.playerClass {
-    padding: 25px;
-    font-size: 30px;
+@media only screen and (max-width: 480px) {
+    .add-or-reset {
+        margin: auto;
+        width: 5%;
+    }
 }
 
-.playerName {
-    border-width: thick;
-    border-color: black;
-    text-align: center;
-    color: grey;
-}
-
-.playerTotal {
-    border-width: thick;
-    color: green;
-    text-align: center;
-    border-color: gold;
-    width: 55px;
-}
-
-.winner {
-    border-width: thick;
-    width: 55px;
-    margin-left: 15px;
-    border-color: green;
-}
-
-.loser {
-    border-width: thick;
-    width: 55px;
-    margin-left: 20px;
-    border-color: red;
-}
-
-.addPlayer

@@ -137,7 +137,7 @@ function submit() {
     let headers = ['Player', 'Amount Won/Lost', 'Won/Lost']
     let cell = []
     const table = document.getElementById('overall-table');
-    for (let i = 1; i < table.rows.length; i++) {
+    for (let i = 0; i < table.rows.length; i++) {
         for (let j = 0; j < table.rows[i].cells.length; j++) {
             if (table.rows[i].cells[j].innerText === 'X') continue
             let cellData = table.rows[i].cells[j].innerText
@@ -150,16 +150,36 @@ function submit() {
 
 //create a user-defined function to download CSV file
 function download_csv_file(cellArr) {
+    console.log(cellArr, 'array being passed in')
 
     //define the heading for each row of the data
-    let csvHeaders = ['Player', 'Amount Won/Lost', 'Won/Lost']
+   // let csvData = [['Player', 'Amount Won/Lost', 'Won/Lost']]
+    let csvData = []
+    let newCsvData = [];
+   for (let i = 0; i < cellArr.length; i++) {
+       newCsvData.push(cellArr[i])
+       console.log(newCsvData[i],newCsvData.length, 'this is the lenght')
+       if (newCsvData.length === 3) {
+           console.log(newCsvData)
+           if (csvData[0] === undefined) {
+            csvData[0] = newCsvData
+            newCsvData = []
 
-    //merge the data with CSV
-    // for (let i = 0; i < cellArr.length; i++ ) {
-    //     csvHeaders += row.join(',');
-    //     csvHeaders += "\n";
-    // };
+           } else if (csvData[1] === undefined) {
+            csvData[1] = newCsvData
+            newCsvData = []
 
+           } else {
+            csvData[2] = newCsvData
+            newCsvData = []
+
+           }
+           
+       }
+   }
+   console.log(csvData, 'this is data')
+  // console.log(csvData)
+/*
     //display the created CSV data on the web browser
     document.write(csvHeaders);
 
@@ -171,4 +191,5 @@ function download_csv_file(cellArr) {
     //provide the name for the CSV file to be downloaded
     hiddenElement.download = 'Liars Dollars' + new Date() + '.csv';
     hiddenElement.click();
+    */
 }

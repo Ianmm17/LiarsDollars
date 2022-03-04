@@ -22,11 +22,16 @@ function addPlayer() {
     addPlayerCard(playerName, playerTotal, playerCard)
 }
 
-function resetGame() {
-    let trueOrFalse = confirm('All data will be lost for game, are you sure you want to reset game?')
-    if (trueOrFalse) {
+function resetGame(autoReset) {
+    if (autoReset) {
         window.location.reload()
+    } else {
+        let trueOrFalse = confirm('All data will be lost for game, are you sure you want to reset game?')
+        if (trueOrFalse) {
+            window.location.reload()
+        }
     }
+
 }
 
 function winner(playerName, playerBalanceNumBoxName) {
@@ -134,7 +139,6 @@ function removeData(playerBalanceNumBoxName, winOrLoss) {
 }
 
 function submit() {
-    let headers = ['Player', 'Amount Won/Lost', 'Won/Lost']
     let cell = []
     const table = document.getElementById('overall-table');
     for (let i = 0; i < table.rows.length; i++) {
@@ -145,51 +149,35 @@ function submit() {
 
         }
     }
-    download_csv_file(cell)
+    if (cell.length === 3) {
+        alert('No data to submit')
+    } else {
+        if (confirm('Submitting will end game') === true) {
+            download_csv_file(cell)
+        }
+    }
+
 }
 
 //create a user-defined function to download CSV file
 function download_csv_file(cellArr) {
-    console.log(cellArr, 'array being passed in')
-
-    //define the heading for each row of the data
-   // let csvData = [['Player', 'Amount Won/Lost', 'Won/Lost']]
     let csvData = []
     let newCsvData = [];
    for (let i = 0; i < cellArr.length; i++) {
        newCsvData.push(cellArr[i])
-       console.log(newCsvData[i],newCsvData.length, 'this is the lenght')
        if (newCsvData.length === 3) {
-           console.log(newCsvData)
-           if (csvData[0] === undefined) {
-            csvData[0] = newCsvData
-            newCsvData = []
-
-           } else if (csvData[1] === undefined) {
-            csvData[1] = newCsvData
-            newCsvData = []
-
-           } else {
-            csvData[2] = newCsvData
-            newCsvData = []
-
-           }
-           
+           csvData.push(newCsvData)
+           newCsvData = []
        }
    }
-   console.log(csvData, 'this is data')
-  // console.log(csvData)
-/*
-    //display the created CSV data on the web browser
-    document.write(csvHeaders);
 
+    let csvContent = 'data:text/csv;charset=utf-8,' + csvData.map(e => e.join(',')).join('\n')
+    let encodedUri = encodeURI(csvContent);
+    let link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "Liars_Dollars_" + new Date() + ".csv");
+    document.body.appendChild(link);
 
-    let hiddenElement = document.createElement('a');
-    hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csvHeaders);
-    hiddenElement.target = '_blank';
-
-    //provide the name for the CSV file to be downloaded
-    hiddenElement.download = 'Liars Dollars' + new Date() + '.csv';
-    hiddenElement.click();
-    */
+    link.click(); // This will download the data file named "Liars_Dollars_Date".
+    resetGame(true)
 }

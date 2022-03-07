@@ -1,8 +1,8 @@
 // Get the element
 class Player {
-    constructor(name, startingBalance, currentBalance) {
-        this.name = name
-        this.total = total
+    constructor(name, total, startingBalance, currentBalance) {
+        this.namebox = name
+        this.totalbox = total
         this.startingBalance = startingBalance
         this.currentBalance = currentBalance
     }
@@ -18,8 +18,11 @@ function addPlayer() {
     let playerCard = `player-card${numberOfPlayers}`
     let playerName = `player-name${numberOfPlayers}`
     let playerTotal = `player-total${numberOfPlayers}`
+    //Player.namebox = playerName
+    //Player.totalbox = playerTotal
     playerArr.push(playerTotal)
     addPlayerCard(playerName, playerTotal, playerCard)
+    //console.log(Player.namebox, Player.totalbox, Player, 'this is name box')
 }
 
 function resetGame(autoReset) {

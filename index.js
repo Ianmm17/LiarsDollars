@@ -1,12 +1,14 @@
 // Get the element
 class Player {
-    constructor(name, startingBalance, currentBalance) {
-        this.name = name
-        this.total = total
+    constructor(name, total, startingBalance, currentBalance) {
+        this.namebox = name
+        this.totalBoxName = total
         this.startingBalance = startingBalance
         this.currentBalance = currentBalance
     }
 }
+
+let tempPlayerArr = []
 
 //document.querySelectorAll('.player-class .player-name') maybe use?
 let numberOfPlayers = 1;
@@ -20,6 +22,7 @@ function addPlayer() {
     let playerTotal = `player-total${numberOfPlayers}`
     playerArr.push(playerTotal)
     addPlayerCard(playerName, playerTotal, playerCard)
+    //console.log(Player.namebox, Player.totalbox, Player, 'this is name box')
 }
 
 function resetGame(autoReset) {
@@ -43,6 +46,13 @@ function winner(playerName, playerBalanceNumBoxName) {
     } else if (playerArr.length < 2) {
         document.getElementsByClassName('winner').disable = true
     } else {
+        //TODO implement class for players
+        /*Player.namebox = playerName
+        Player.totalBoxName = playerBalanceNumBoxName
+        Player.startingBalance = Number(document.getElementById(playerBalanceNumBoxName).value)
+        // Player.startingBalance = document.getElementById(Player.totalbox).value*/
+
+
         document.getElementById(playerBalanceNumBoxName).value = Number(balance) + (numberOfPlayers - 1)
         addTableRow(name, playerBalanceNumBoxName,numberOfPlayers -1, true)
         for (let i = 0; i < playerArr.length; i++) {
@@ -52,6 +62,9 @@ function winner(playerName, playerBalanceNumBoxName) {
             }
         }
     }
+    /*Player.currentBalance = Number(document.getElementById(playerBalanceNumBoxName).value)
+    tempPlayerArr.push(Player)
+    console.log(tempPlayerArr)*/
 
 }
 

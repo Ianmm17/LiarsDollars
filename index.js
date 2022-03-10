@@ -1,13 +1,14 @@
-// Get the element
+//TODO implement class for players
+
 class Player {
-    constructor(name, total, startingBalance, currentBalance) {
-        this.namebox = name
-        this.totalBoxName = total
-        this.startingBalance = startingBalance
-        this.currentBalance = currentBalance
+    constructor(domName, domTotal) {
+        this.domName = domName
+        this.domTotal = domTotal
+        this.name = domName.value
+        this.total = domTotal.value
+        this.startingBalance = domTotal.value
     }
 }
-
 let tempPlayerArr = []
 
 //document.querySelectorAll('.player-class .player-name') maybe use?
@@ -15,13 +16,19 @@ let numberOfPlayers = 1;
 let playerArr = ['player-total']
 
 
+
+tempPlayerArr.push(new Player(`player-name${numberOfPlayers}`, `player-total${numberOfPlayers}`))
+
 function addPlayer() {
     numberOfPlayers += 1
+    tempPlayerArr.push(new Player(`player-name${numberOfPlayers}`, `player-total${numberOfPlayers}`))
+    console.log(tempPlayerArr)
+
     let playerCard = `player-card${numberOfPlayers}`
     let playerName = `player-name${numberOfPlayers}`
     let playerTotal = `player-total${numberOfPlayers}`
     playerArr.push(playerTotal)
-    addPlayerCard(playerName, playerTotal, playerCard)
+    addPlayerCard(tempPlayerArr[numberOfPlayers-1].domName, tempPlayerArr[numberOfPlayers-1].domTotal, playerCard)
     //console.log(Player.namebox, Player.totalbox, Player, 'this is name box')
 }
 
@@ -37,26 +44,31 @@ function resetGame(autoReset) {
 
 }
 
-function winner(playerName, playerBalanceNumBoxName) {
-    let name = document.getElementById(`${playerName}`).value
-    let balance = document.getElementById(playerBalanceNumBoxName).value
+function winner(domName, domTotal) {
+    let once = 0
+    let name = document.getElementById(`${domName}`).value
+    let balance = document.getElementById(domTotal).value
 
     if (name === "" || balance === "") {
         alert("Please enter a name and player balance")
     } else if (playerArr.length < 2) {
         document.getElementsByClassName('winner').disable = true
     } else {
-        //TODO implement class for players
-        /*Player.namebox = playerName
-        Player.totalBoxName = playerBalanceNumBoxName
-        Player.startingBalance = Number(document.getElementById(playerBalanceNumBoxName).value)
-        // Player.startingBalance = document.getElementById(Player.totalbox).value*/
+        while (once === 0) {
+            for (let i = 0; i < tempPlayerArr.length; i++) {
+                tempPlayerArr[i].name = document.getElementById(tempPlayerArr[i].domName).value
+                tempPlayerArr[i].startingBalance = document.getElementById(tempPlayerArr[i].domTotal).value
+                tempPlayerArr[i].total = document.getElementById(tempPlayerArr[i].domTotal).value
+                once +=1
+            }
+        }
+        console.log(tempPlayerArr)
 
-
-        document.getElementById(playerBalanceNumBoxName).value = Number(balance) + (numberOfPlayers - 1)
-        addTableRow(name, playerBalanceNumBoxName,numberOfPlayers -1, true)
+        // Update every class with new totals then have dom reference the class to update dom
+        document.getElementById(domTotal).value = Number(balance) + (numberOfPlayers - 1)
+        addTableRow(name, domTotal,numberOfPlayers -1, true)
         for (let i = 0; i < playerArr.length; i++) {
-            if (playerBalanceNumBoxName !== playerArr[i]) {
+            if (domTotal !== playerArr[i]) {
                 let losingPlayer = document.getElementById(`${playerArr[i]}`).value
                 document.getElementById(`${playerArr[i]}`).value = losingPlayer - 1
             }
@@ -111,14 +123,14 @@ function addTableRow(name, playerBalanceNumBoxName, moneyEarnedOrLoss, winOrLoss
 
 }
 
-function addPlayerCard(playerName, playerTotal, playerCard) {
+function addPlayerCard(domName, domTotal, playerCard) {
     let elementPlayerClasses = document.getElementById("player-classes")
     elementPlayerClasses.insertAdjacentHTML("beforeend",
         `<div class=player-card id=${playerCard}>` +
-        `<input id="${playerName}" class="player-name" type='text' name='player-name' maxlength=12 placeholder="Enter Player Name" color=\"grey\"/>
-                <input id="${playerTotal}" class="player-total" type='number' name='player-total' maxlength=12/>
-                <button class="winner" type="button" name="winner" onclick="winner('${playerName}', '${playerTotal}')">W</button>
-                <button class="loser" type="button" name="loser" onclick="loser('${playerName}', '${playerTotal}')">L</button>
+        `<input id="${domName}" class="player-name" type='text' name='player-name' maxlength=12 placeholder="Enter Player Name" color=\"grey\"/>
+                <input id="${domTotal}" class="player-total" type='number' name='player-total' maxlength=12/>
+                <button class="winner" type="button" name="winner" onclick="winner('${domName}', '${domTotal}')">W</button>
+                <button class="loser" type="button" name="loser" onclick="loser('${domName}', '${domTotal}')">L</button>
         </div>`)
 }
 

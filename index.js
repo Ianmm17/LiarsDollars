@@ -67,17 +67,17 @@ function winner(domName, domTotal) {
         // Update every class with new totals then have dom reference the class to update dom
         document.getElementById(domTotal).value = Number(balance) + (numberOfPlayers - 1)
         addTableRow(name, domTotal,numberOfPlayers -1, true)
-        for (let i = 0; i < playerArr.length; i++) {
-            if (domTotal !== playerArr[i]) {
-                let losingPlayer = document.getElementById(`${playerArr[i]}`).value
-                document.getElementById(`${playerArr[i]}`).value = losingPlayer - 1
+        for (let i = 0; i < tempPlayerArr.length; i++) {
+            if (domTotal !== tempPlayerArr[i].domTotal) {
+                let losingPlayer = document.getElementById(`${tempPlayerArr[i].domTotal}`).value
+                tempPlayerArr[i].total = losingPlayer -1
+                document.getElementById(`${tempPlayerArr[i].domTotal}`).value = losingPlayer - 1
+            } else {
+                tempPlayerArr[i].total = Number(balance) + (numberOfPlayers - 1)
             }
         }
+        console.log(tempPlayerArr)
     }
-    /*Player.currentBalance = Number(document.getElementById(playerBalanceNumBoxName).value)
-    tempPlayerArr.push(Player)
-    console.log(tempPlayerArr)*/
-
 }
 
 function loser(playerName, playerBalanceNumBoxName) {

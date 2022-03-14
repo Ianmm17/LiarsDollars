@@ -51,7 +51,7 @@ function winner(domName, domTotal) {
 
     if (name === "" || balance === "") {
         alert("Please enter a name and player balance")
-    } else if (playerArr.length < 2) {
+    } else if (tempPlayerArr.length < 2) {
         document.getElementsByClassName('winner').disable = true
     } else {
         while (once === 0) {

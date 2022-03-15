@@ -1,12 +1,10 @@
 //TODO implement class for players
 
 class Player {
-    constructor(domName, domTotal) {
-        this.domName = domName
-        this.domTotal = domTotal
-        this.name = domName.value
-        this.total = domTotal.value
-        this.startingBalance = domTotal.value
+    constructor(name, total) {
+        this.name = name
+        this.total = total
+        this.startingBalance = total
     }
 }
 let tempPlayerArr = []
@@ -17,19 +15,13 @@ let playerArr = ['player-total']
 
 
 
-tempPlayerArr.push(new Player(`player-name${numberOfPlayers}`, `player-total${numberOfPlayers}`))
-
 function addPlayer() {
     numberOfPlayers += 1
-    tempPlayerArr.push(new Player(`player-name${numberOfPlayers}`, `player-total${numberOfPlayers}`))
-    console.log(tempPlayerArr)
 
     let playerCard = `player-card${numberOfPlayers}`
-    let playerName = `player-name${numberOfPlayers}`
-    let playerTotal = `player-total${numberOfPlayers}`
-    playerArr.push(playerTotal)
-    addPlayerCard(tempPlayerArr[numberOfPlayers-1].domName, tempPlayerArr[numberOfPlayers-1].domTotal, playerCard)
-    //console.log(Player.namebox, Player.totalbox, Player, 'this is name box')
+    let domName = `player-name${numberOfPlayers}`
+    let domTotal = `player-total${numberOfPlayers}`
+    addPlayerCard(domName, domTotal, playerCard)
 }
 
 function resetGame(autoReset) {
@@ -44,10 +36,10 @@ function resetGame(autoReset) {
 
 }
 
-function winner(domName, domTotal) {
+function winner(domNameStr, domTotalStr) {
     let once = 0
-    let name = document.getElementById(`${domName}`).value
-    let balance = document.getElementById(domTotal).value
+    let name = document.getElementById(`${domNameStr}`).value
+    let balance = document.getElementById(domTotalStr).value
 
     if (name === "" || balance === "") {
         alert("Please enter a name and player balance")
@@ -55,10 +47,12 @@ function winner(domName, domTotal) {
         document.getElementsByClassName('winner').disable = true
     } else {
         while (once === 0) {
+            tempPlayerArr.push(new Player(document.getElementById(`player-name1`).value, document.getElementById(`player-total1`).value))
+
             for (let i = 0; i < tempPlayerArr.length; i++) {
-                tempPlayerArr[i].name = document.getElementById(tempPlayerArr[i].domName).value
-                tempPlayerArr[i].startingBalance = document.getElementById(tempPlayerArr[i].domTotal).value
-                tempPlayerArr[i].total = document.getElementById(tempPlayerArr[i].domTotal).value
+                tempPlayerArr[i].name = document.getElementById(domNameStr).value
+                tempPlayerArr[i].startingBalance = document.getElementById(domTotalStr).value
+                tempPlayerArr[i].total = document.getElementById(domTotalStr).value
                 once +=1
             }
         }

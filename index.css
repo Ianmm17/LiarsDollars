@@ -1,19 +1,27 @@
 
-@media only screen and (min-width: 480px) {
+@media only screen and (min-width: 600px) {
     .header {
-        padding: 60px;
-        text-align: center;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        padding-top: 30px;
+        padding-bottom: 30px;
         background: #1abc9c;
         color: white;
         font-size: 30px;
     }
 
     .player-classes {
-        margin: auto;
-        width: 35%;
+        width: 100%;
         padding: 25px;
         font-size: 30px;
 
+    }
+
+    .player-card {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 15px;
     }
 
     .player-name {
@@ -26,6 +34,7 @@
     }
 
     .player-total {
+        margin-left: 15px;
         border-width: thick;
         color: green;
         text-align: center;
@@ -36,7 +45,7 @@
     .winner {
         border-width: thick;
         width: 55px;
-        margin-left: 15px;
+        margin-left: 25px;
         border-color: green;
     }
 
@@ -48,20 +57,23 @@
     }
 
     .add-or-reset {
-        width: 35%;
-        padding: 15px;
-        margin: auto;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        font-size: 30px;
+        margin-top: 22px;
+        margin-bottom: 22px;
     }
 
     .add-player {
         background: #00fd00;
-        margin-left: 25%;
         border-radius: 5px;
         font-weight: bolder;
         font-size: 15px;
     }
 
     .reset-game {
+        margin-left: 10px;
         background: #ee4242;
         border-radius: 5px;
         font-weight: bolder;
@@ -69,9 +81,9 @@
     }
 
     .players-record {
-        padding: 75px;
-        width: 55%;
-        margin: auto;
+        display: flex;
+        justify-content: center;
+        width: 100%;
         font-size: 35px;
     }
 
@@ -93,12 +105,15 @@
     }
 
     .submit {
-        margin-right: 8%;
+        display: flex;
+        justify-content: right;
+
+        width: 100%;
         margin-top: 3%;
-        float: right;
+    }
+    #submit {
         background: #1abc9c;
         color: white;
-        text-align: center;
         font-size: 25px;
         border-radius: 15px;
     }
@@ -107,16 +122,12 @@
         padding-right: 15px;
         padding-left: 15px;
     }
-
-
-
-
 }
 
-@media only screen and (max-width: 480px) {
-    .add-or-reset {
-        margin: auto;
-        width: 5%;
+@media only screen and (max-width: 599px) {
+    .header {
+        background-color: blue;
     }
 }
+
 

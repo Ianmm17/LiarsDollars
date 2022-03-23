@@ -10,8 +10,8 @@ class Player {
 let tempPlayerArr = []
 
 //document.querySelectorAll('.player-class .player-name') maybe use?
-let numberOfPlayers = 1;
-let playerArr = ['player-total']
+let numberOfPlayers = 0;
+let playerArr = []
 
 
 
@@ -21,7 +21,19 @@ function addPlayer() {
     let playerCard = `player-card${numberOfPlayers}`
     let domName = `player-name${numberOfPlayers}`
     let domTotal = `player-total${numberOfPlayers}`
+
     addPlayerCard(domName, domTotal, playerCard)
+
+    /*eval('let' + 'player' + numberOfPlayers + '+=' ';')
+    let k = 'player';
+    let i = 0;
+    for(i = 1; i < 5; i++) {
+        eval('var ' + k + i + '= ' + i + ';');
+    }
+
+    let player1 = new Player(document.getElementById(`${domName}`).value, document.getElementById(`${domTotal}`).value)
+    playerArr.push(player1)*/
+
 }
 
 function resetGame(autoReset) {
@@ -53,16 +65,18 @@ function winner(domNameStr, domTotalStr) {
                 tempPlayerArr[i].name = document.getElementById(domNameStr).value
                 tempPlayerArr[i].startingBalance = document.getElementById(domTotalStr).value
                 tempPlayerArr[i].total = document.getElementById(domTotalStr).value
-                once +=1
             }
+            once +=1
+
         }
         console.log(tempPlayerArr)
 
         // Update every class with new totals then have dom reference the class to update dom
-        document.getElementById(domTotal).value = Number(balance) + (numberOfPlayers - 1)
-        addTableRow(name, domTotal,numberOfPlayers -1, true)
+        document.getElementById(domTotalStr).value = Number(balance) + (numberOfPlayers - 1)
+        addTableRow(name, domTotalStr,numberOfPlayers -1, true)
         for (let i = 0; i < tempPlayerArr.length; i++) {
-            if (domTotal !== tempPlayerArr[i].domTotal) {
+            console.log(tempPlayerArr)
+            if (domTotalStr !== tempPlayerArr[i].domTotal) {
                 let losingPlayer = document.getElementById(`${tempPlayerArr[i].domTotal}`).value
                 tempPlayerArr[i].total = losingPlayer -1
                 document.getElementById(`${tempPlayerArr[i].domTotal}`).value = losingPlayer - 1
